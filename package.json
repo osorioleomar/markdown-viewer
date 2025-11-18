@@ -16,7 +16,6 @@
     "remark-gfm": "^4.0.0",
     "remark-smartypants": "^3.0.2",
     "remark-emoji": "^5.0.2",
-    "remark-footnotes": "^4.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "jspdf": "^2.5.1",
     "html2canvas": "^1.4.1"

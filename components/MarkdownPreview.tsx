@@ -4,7 +4,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkSmartypants from "remark-smartypants";
 import remarkEmoji from "remark-emoji";
-import remarkFootnotes from "remark-footnotes";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -21,7 +20,6 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
             remarkGfm,
             remarkSmartypants,
             remarkEmoji,
-            remarkFootnotes,
           ]}
           components={{
             code({ node, inline, className, children, ...props }) {
@@ -109,17 +107,8 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
             ),
             // Support for images
             img: ({ node, ...props }) => (
-              <img className="max-w-full h-auto my-4 rounded" {...props} />
+              <img className="max-w-full h-auto my-4 rounded" alt="" {...props} />
             ),
-            // Support for footnotes
-            section: ({ node, ...props }: any) => {
-              if (props.className === "footnotes") {
-                return (
-                  <section className="mt-8 pt-4 border-t border-gray-300 text-sm text-gray-600" {...props} />
-                );
-              }
-              return <section {...props} />;
-            },
           }}
         >
           {content || "Your markdown preview will appear here..."}
