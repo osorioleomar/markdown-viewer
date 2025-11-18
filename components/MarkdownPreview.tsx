@@ -22,7 +22,8 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
             remarkEmoji,
           ]}
           components={{
-            code({ node, inline, className, children, ...props }) {
+            code(props: any) {
+              const { node, inline, className, children, ...rest } = props;
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
@@ -30,14 +31,14 @@ export default function MarkdownPreview({ content }: MarkdownPreviewProps) {
                   language={match[1]}
                   PreTag="div"
                   className="bg-gray-50 p-4 my-4 border border-gray-200"
-                  {...props}
+                  {...rest}
                 >
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
               ) : (
                 <code
                   className="bg-gray-100 px-1.5 py-0.5 text-gray-900 border border-gray-200"
-                  {...props}
+                  {...rest}
                 >
                   {children}
                 </code>
